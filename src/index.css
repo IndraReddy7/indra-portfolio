@@ -435,20 +435,45 @@ footer {
 .footer-right { font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:0.06em; }
 .footer-right span { color:var(--cyan); }
 
-/* ── SCROLL REVEAL ── */
+/* ── SCROLL REVEAL — FALL IN ── */
 .reveal {
-  opacity:0; transform:translateY(40px);
-  transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  opacity:0;
+  transition:opacity 0.5s ease;
 }
-.reveal.in { opacity:1; transform:none; }
-.reveal .skill-cell, .reveal .proj-card,
-.reveal .cert-cell, .reveal .exp-row {
-  opacity:0; transform:translateY(30px);
-  transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+.reveal.in { opacity:1; }
+
+/* Cards fall from above into position */
+.reveal .skill-cell,
+.reveal .proj-card,
+.reveal .cert-cell,
+.reveal .exp-row {
+  opacity:0;
+  transform: translateY(-60px) scale(0.96);
+  transition:
+    opacity  0.55s cubic-bezier(0.22,1,0.36,1),
+    transform 0.55s cubic-bezier(0.22,1,0.36,1);
 }
-.reveal.in .skill-cell, .reveal.in .proj-card,
-.reveal.in .cert-cell, .reveal.in .exp-row {
-  opacity:1; transform:none;
+.reveal.in .skill-cell,
+.reveal.in .proj-card,
+.reveal.in .cert-cell,
+.reveal.in .exp-row {
+  opacity:1;
+  transform: translateY(0) scale(1);
+}
+
+/* Section headings also fall in */
+.reveal .sec-title,
+.reveal .sec-eyebrow {
+  opacity:0;
+  transform: translateY(-30px);
+  transition:
+    opacity  0.5s cubic-bezier(0.22,1,0.36,1),
+    transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.in .sec-title,
+.reveal.in .sec-eyebrow {
+  opacity:1;
+  transform: translateY(0);
 }
 
 /* ── RESPONSIVE ── */
