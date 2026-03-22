@@ -189,8 +189,7 @@ function Hero() {
       </p>
       <p className="hero-bio hero-anim" ref={ref(2)}>
         Building intelligent systems at the intersection of AI and data engineering. Specializing
-        in multi-cloud architectures, real-time financial applications, and scalable AI agents
-        that solve complex problems in banking and fintech.
+        in multi-cloud architectures, real-time applications, and scalable AI agents.
       </p>
       <div className="hero-btns hero-anim" ref={ref(3)}>
         <a href="#contact" className="btn-cyan">Get in Touch</a>
