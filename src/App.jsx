@@ -93,13 +93,26 @@ function useReveal() {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('in')
-          entry.target.querySelectorAll('.skill-cell,.proj-card,.cert-cell,.exp-row')
-            .forEach((child, i) => { child.style.transitionDelay = `${i * 100}ms` })
+          // Stagger headings first, then cards fall in one by one
+          const headings = entry.target.querySelectorAll('.sec-title,.sec-eyebrow')
+          headings.forEach((el, i) => {
+            el.style.transitionDelay = `${i * 80}ms`
+          })
+
+          const cards = entry.target.querySelectorAll(
+            '.skill-cell,.proj-card,.cert-cell,.exp-row'
+          )
+          cards.forEach((child, i) => {
+            // Cards fall in after headings, staggered 120ms apart
+            child.style.transitionDelay = `${120 + i * 130}ms`
+          })
+
+          // Small timeout so the delays are set before class is added
+          setTimeout(() => entry.target.classList.add('in'), 10)
           observer.unobserve(entry.target)
         }
       })
-    }, { threshold: 0.08 })
+    }, { threshold: 0.06 })
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
     return () => observer.disconnect()
   }, [])
@@ -132,6 +145,7 @@ function GlowOrbs() {
     </div>
   )
 }
+
 
 function Nav() {
   const active = useActiveNav()
