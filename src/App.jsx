@@ -224,7 +224,7 @@ function About() {
           <div className="about-text">
             <p>
               I&apos;m Dareddy Indra Sena Reddy — an AI &amp; Data Engineer at Cognizant, based in
-              Hyderabad. I build real-time financial systems, multi-agent AI pipelines, and
+              Hyderabad. I build real-time systems, multi-agent AI pipelines, and
               cloud-native data infrastructure across AWS, Azure, and GCP.
             </p>
             <p>
