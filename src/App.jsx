@@ -76,6 +76,7 @@ const CERTS = [
   { provider:'Udemy',             name:'Spanish for Beginners – Complete Course Level 1', date:'Sept 16, 2025 · 4 hrs',   wip:false },
   { provider:'Amazon Web Services',name:'AWS Certified Data Engineer – Associate',        date:'Actively studying · Target 2026', wip:true },
   { provider:'Google Cloud',      name:'Associate Cloud Engineer / Data Practitioner',    date:'Actively studying · Target 2026', wip:true },
+  { provider:'Databricks',          name:'Databricks Certified Associate Data Engineer',      date:'Actively studying · Target 2026', wip:true },
 ]
 
 const ABOUT_ROWS = [
@@ -231,7 +232,8 @@ function Hero() {
       </p>
       <p className="hero-bio hero-anim" ref={ref(2)}>
         Building intelligent systems at the intersection of AI and data engineering. Specializing
-        in multi-cloud architectures, real-time applications, and scalable AI agents.
+        in multi-cloud architectures, real-time financial applications, and scalable AI agents
+        that solve complex problems in banking and fintech.
       </p>
       <div className="hero-btns hero-anim" ref={ref(3)}>
         <a href="#contact" className="btn-cyan">Get in Touch</a>
@@ -266,7 +268,7 @@ function About() {
           <div className="about-text">
             <p>
               I&apos;m Dareddy Indra Sena Reddy — an AI &amp; Data Engineer at Cognizant, based in
-              Hyderabad. I build real-time systems, multi-agent AI pipelines, and
+              Hyderabad. I build real-time financial systems, multi-agent AI pipelines, and
               cloud-native data infrastructure across AWS, Azure, and GCP.
             </p>
             <p>
@@ -429,11 +431,11 @@ function Contact() {
           architecture, fraud detection, and intelligent data systems.
         </p>
         <div className="contact-links">
-          <a href="mailto:indrasenareddybiher@gmail.com" className="clink">
-            ✉&nbsp; indrasenareddybiher@gmail.com
+          <a href="mailto:dareddyindra.reddy2@cognizant.com" className="clink">
+            ✉&nbsp; dareddyindra.reddy2@cognizant.com
           </a>
           <a href="https://linkedin.com/in/Indra312004" target="_blank" rel="noreferrer" className="clink">
-            in&nbsp; linkedin.com/in/Indra312004
+            ↗&nbsp; linkedin.com/in/Indra312004
           </a>
           <a href="tel:+917075182018" className="clink">
             ☎&nbsp; +91 70751 82018
