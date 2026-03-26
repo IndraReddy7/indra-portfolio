@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 
 /* ── DATA ── */
-const NAV_LINKS = ['about','skills','experience','projects','certifications','contact']
+const NAV_LINKS = ['about', 'skills', 'experience', 'projects', 'certifications', 'contact']
 
 const SKILLS = [
-  { label: 'AI / ML',           items: ['Python','Machine Learning','Deep Learning','LLMs & GenAI','Multi-Agent Systems','Computer Vision'] },
-  { label: 'Cloud Platforms',   items: ['AWS Fundamentals','Azure Fundamentals','GCP Fundamentals'] },
-  { label: 'Data Engineering',  items: ['PySpark','SQL (Advanced)','ETL Pipeline Design'] },
-  { label: 'In Progress',       items: ['AWS Certified Data Engineer – Associate','Google Cloud Associate Cloud Engineer'] },
+  { label: 'AI / ML', items: ['Python', 'Machine Learning', 'Deep Learning', 'LLMs & GenAI', 'Multi-Agent Systems', 'Computer Vision'] },
+  { label: 'Cloud Platforms', items: ['AWS Fundamentals', 'Azure Fundamentals', 'GCP Fundamentals'] },
+  { label: 'Data Engineering', items: ['PySpark', 'SQL (Advanced)', 'ETL Pipeline Design'] },
+  { label: 'In Progress', items: ['AWS Certified Data Engineer – Associate', 'Google Cloud Associate Cloud Engineer'] },
 ]
 
 const EXPERIENCE = [
@@ -37,54 +37,54 @@ const EXPERIENCE = [
 const PROJECTS = [
   {
     index: '01',
-    tags: [['AWS','cyan'],['Multi-Agent','violet'],['Python','cyan']],
+    tags: [['AWS', 'cyan'], ['Multi-Agent', 'violet'], ['Python', 'cyan']],
     name: 'Loan Fraud Detection\nMulti-Agent System',
     desc: 'Orchestrator-driven agent architecture for real-time loan fraud detection. An Orchestrator Agent coordinates four specialized sub-agents — KYC, DEX, Behavioral Assessment, and Fraud Ring — applying weighted composite fraud scoring with DynamoDB persistence and SNS alerting across the full lifecycle.',
-    stack: ['Lambda','Step Functions','DynamoDB','CloudFormation','SNS','Python 3.11'],
+    stack: ['Lambda', 'Step Functions', 'DynamoDB', 'CloudFormation', 'SNS', 'Python 3.11'],
     wip: false,
   },
   {
     index: '02',
-    tags: [['Deep Learning','green'],['Python','cyan'],['Medical AI','blue']],
+    tags: [['Deep Learning', 'green'], ['Python', 'cyan'], ['Medical AI', 'blue']],
     name: 'Brain Tumor\nClassification Model',
     desc: 'Deep learning model trained on MRI imaging data to classify brain tumors with high accuracy. Applies convolutional neural networks to medical imaging — demonstrating applied ML for critical healthcare diagnostics with real-world clinical implications.',
-    stack: ['TensorFlow / Keras','CNN','MRI Datasets','Python'],
+    stack: ['TensorFlow / Keras', 'CNN', 'MRI Datasets', 'Python'],
     wip: false,
   },
   {
     index: '03',
-    tags: [['AWS','cyan'],['FinTech','amber'],['Python','cyan']],
+    tags: [['AWS', 'cyan'], ['FinTech', 'amber'], ['Python', 'cyan']],
     name: 'KYC Underwriting\nLambda Optimizer',
     desc: 'High-performance KYC/underwriting Lambda function optimized for sub-10-second execution. Parallel ThreadPoolExecutor calls, tightened timeouts, and DynamoDB projection expressions ensure the function meets strict financial SLAs under production load.',
-    stack: ['Lambda','ThreadPoolExecutor','DynamoDB','Python 3.11'],
+    stack: ['Lambda', 'ThreadPoolExecutor', 'DynamoDB', 'Python 3.11'],
     wip: false,
   },
   {
     index: '04',
-    tags: [['Coming Soon','amber']],
+    tags: [['Coming Soon', 'amber']],
     name: 'Stealth Project',
     desc: 'Project details will be revealed once development is complete. Stay tuned for updates on this exciting build.',
-    stack: ['???','???','???'],
+    stack: ['???', '???', '???'],
     wip: true,
   },
 ]
 
 const CERTS = [
-  { provider:'AWS',               name:'Fundamentals of Analytics on AWS – Part 1',    date:'March 21, 2026',           wip:false },
-  { provider:'Microsoft · Udemy', name:"Microsoft Azure – Beginner's Guide + AZ-900",   date:'Feb 13, 2025 · 14.5 hrs',  wip:false },
-  { provider:'Udemy',             name:'Data Modeling & Relational DB Design using ERwin',date:'Jan 1, 2025 · 3.5 hrs',   wip:false },
-  { provider:'Amazon Web Services',name:'AWS Certified Data Engineer – Associate',        date:'Actively studying · Target 2026', wip:true },
-  { provider:'Google Cloud',      name:'Associate Cloud Engineer / Data Practitioner',    date:'Actively studying · Target 2026', wip:true },
-  { provider:'Databricks',          name:'Databricks Certified Associate Data Engineer',      date:'Actively studying · Target 2026', wip:true },
+  { provider: 'AWS', name: 'Fundamentals of Analytics on AWS – Part 1', date: 'March 21, 2026', wip: false },
+  { provider: 'Microsoft · Udemy', name: "Microsoft Azure – Beginner's Guide + AZ-900", date: 'Feb 13, 2025 · 14.5 hrs', wip: false },
+  { provider: 'Udemy', name: 'Data Modeling & Relational DB Design using ERwin', date: 'Jan 1, 2025 · 3.5 hrs', wip: false },
+  { provider: 'Amazon Web Services', name: 'AWS Certified Data Engineer – Associate', date: 'Actively studying · Target 2026', wip: true },
+  { provider: 'Google Cloud', name: 'Associate Cloud Engineer / Data Practitioner', date: 'Actively studying · Target 2026', wip: true },
+  { provider: 'Databricks', name: 'Databricks Certified Associate Data Engineer', date: 'Actively studying · Target 2026', wip: true },
 ]
 
 const ABOUT_ROWS = [
-  { label:'Role',         value:'Programmer Analyst Trainee', cyan:false },
-  { label:'Company',      value:'Cognizant',                  cyan:false },
-  { label:'Location',     value:'Hyderabad, Telangana',       cyan:false },
-  { label:'Availability', value:'Open · Freelance & Full-time', cyan:true },
-  { label:'Education',    value:'B.Tech AI · 8.7 GPA',        cyan:false },
-  { label:'LinkedIn',     value:'Indra312004', link:'https://linkedin.com/in/Indra312004', cyan:true },
+  { label: 'Role', value: 'Programmer Analyst Trainee', cyan: false },
+  { label: 'Company', value: 'Cognizant', cyan: false },
+  { label: 'Location', value: 'Hyderabad, Telangana', cyan: false },
+  { label: 'Availability', value: 'Open · Freelance & Full-time', cyan: true },
+  { label: 'Education', value: 'B.Tech AI · 8.7 GPA', cyan: false },
+  { label: 'LinkedIn', value: 'Indra312004', link: 'https://linkedin.com/in/Indra312004', cyan: true },
 ]
 
 /* ── HOOKS ── */
@@ -147,11 +147,122 @@ function GlowOrbs() {
 }
 
 
-function Nav() {
+/* ── CURSOR GLOW ── */
+function CursorGlow() {
+  const glowRef = useRef(null)
+
+  useEffect(() => {
+    const el = glowRef.current
+    if (!el) return
+    const move = e => {
+      el.style.transform = `translate(${e.clientX - 160}px, ${e.clientY - 160}px)`
+      el.style.opacity = '1'
+    }
+    const leave = () => { el.style.opacity = '0' }
+    window.addEventListener('mousemove', move, { passive: true })
+    window.addEventListener('mouseleave', leave)
+    return () => {
+      window.removeEventListener('mousemove', move)
+      window.removeEventListener('mouseleave', leave)
+    }
+  }, [])
+
+  return (
+    <div
+      ref={glowRef}
+      style={{
+        position: 'fixed',
+        top: 0, left: 0,
+        width: 320, height: 320,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(0,212,245,0.07) 0%, transparent 70%)',
+        pointerEvents: 'none',
+        zIndex: 9999,
+        opacity: 0,
+        transition: 'opacity 0.3s ease',
+        willChange: 'transform',
+      }}
+    />
+  )
+}
+
+/* ── SCROLL TO TOP ── */
+function ScrollToTop() {
+  const [progress, setProgress] = useState(0)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrolled = window.scrollY
+      const total = document.documentElement.scrollHeight - window.innerHeight
+      const pct = total > 0 ? Math.round((scrolled / total) * 100) : 0
+      setProgress(pct)
+      setVisible(scrolled > 300)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const goTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
+  const r = 18
+  const circ = 2 * Math.PI * r
+  const dash = circ - (progress / 100) * circ
+
+  if (!visible) return null
+
+  return (
+    <button
+      onClick={goTop}
+      className="scroll-top-btn"
+      aria-label="Scroll to top"
+      title={`${progress}% scrolled`}
+    >
+      <svg width="48" height="48" viewBox="0 0 48 48">
+        {/* Track ring */}
+        <circle
+          cx="24" cy="24" r={r}
+          fill="none"
+          stroke="rgba(255,255,255,0.08)"
+          strokeWidth="2"
+        />
+        {/* Progress ring */}
+        <circle
+          cx="24" cy="24" r={r}
+          fill="none"
+          stroke="#00d4f5"
+          strokeWidth="2"
+          strokeDasharray={circ}
+          strokeDashoffset={dash}
+          strokeLinecap="round"
+          transform="rotate(-90 24 24)"
+          style={{ transition: 'stroke-dashoffset 0.2s ease' }}
+        />
+        {/* Arrow up */}
+        <polyline
+          points="17,27 24,19 31,27"
+          fill="none"
+          stroke="#ffffff"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <line
+          x1="24" y1="19" x2="24" y2="30"
+          stroke="#ffffff"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+      </svg>
+      <span className="scroll-top-pct">{progress}%</span>
+    </button>
+  )
+}
+
+
+function Nav({ theme, toggleTheme }) {
   const active = useActiveNav()
   const [open, setOpen] = useState(false)
-
-  // Close menu on link click
   const handleLink = () => setOpen(false)
 
   return (
@@ -167,8 +278,33 @@ function Nav() {
             </li>
           ))}
         </ul>
-        <div style={{ display:'flex', alignItems:'center', gap:12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <a href="#contact" className="nav-hire">Hire Me</a>
+          {/* Theme toggle */}
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            title={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}
+          >
+            {theme === 'dark' ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            )}
+          </button>
           <button
             className="nav-burger"
             onClick={() => setOpen(o => !o)}
@@ -430,17 +566,17 @@ function Contact() {
           architecture, fraud detection, and intelligent data systems.
         </p>
         <div className="contact-links">
-          <a href="mailto:indrasenareddybiher@gmail.com" className="clink">
-            ✉&nbsp; indrasenareddybiher@gmail.com
+          <a href="mailto:indrasenareddy3104@gmail.com" className="clink">
+            ✉&nbsp; indrasenareddy3104@gmail.com
           </a>
           <a href="https://linkedin.com/in/Indra312004" target="_blank" rel="noreferrer" className="clink">
-            In&nbsp; Indra312004
+            IN&nbsp; Indra312004
           </a>
           <a href="tel:+917075182018" className="clink">
             ☎&nbsp; +91 70751 82018
           </a>
         </div>
-        <p style={{ fontFamily:'var(--mono)', fontSize:10, color:'var(--muted)', letterSpacing:'0.14em', textTransform:'uppercase' }}>
+        <p style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--muted)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
           Based in Hyderabad, Telangana &nbsp;·&nbsp; Remotely available worldwide
         </p>
       </div>
@@ -460,15 +596,25 @@ function Footer() {
 /* ── APP ── */
 export default function App() {
   useReveal()
+  const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
+
+  const toggleTheme = useCallback(() => {
+    setTheme(t => t === 'dark' ? 'light' : 'dark')
+  }, [])
+
   return (
     <>
       <GlowOrbs />
-      <Nav />
+      <CursorGlow />
+      <Nav theme={theme} toggleTheme={toggleTheme} />
       <Hero />
       <About />
       <Skills />
@@ -477,6 +623,7 @@ export default function App() {
       <Certifications />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </>
   )
 }
