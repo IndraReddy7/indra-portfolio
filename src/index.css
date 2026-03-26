@@ -477,55 +477,6 @@ footer {
 }
 
 
-/* ── LIGHT THEME ── */
-/* "dim" theme — warm dark slate, not white */
-[data-theme="light"] {
-  --bg:     #1a1a1f;
-  --bg2:    #22222a;
-  --border: #2e2e38;
-  --border2:#3a3a48;
-  --white:  #e8e6e0;
-  --muted:  #6b6b78;
-  --muted2: #9a98a8;
-  --text:   #c8c6d4;
-}
-[data-theme="light"] body { background: var(--bg); }
-[data-theme="light"] nav  { background: rgba(26,26,31,0.92); }
-[data-theme="light"] .skill-cell,
-[data-theme="light"] .proj-card,
-[data-theme="light"] .cert-cell,
-[data-theme="light"] .exp-row,
-[data-theme="light"] .about-row { background: var(--bg); }
-[data-theme="light"] .glow-orb.orange-1,
-[data-theme="light"] .glow-orb.orange-2,
-[data-theme="light"] .glow-orb.orange-3 {
-  background: radial-gradient(circle, #9b4dca 0%, #7b2fa8 40%, transparent 70%);
-  opacity: 0.12;
-}
-[data-theme="light"] .glow-orb.blue-1,
-[data-theme="light"] .glow-orb.blue-2 {
-  opacity: 0.14;
-}
-
-/* ── THEME TOGGLE BUTTON ── */
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px; height: 34px;
-  border: 1px solid var(--border2);
-  background: transparent;
-  color: var(--muted2);
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-  flex-shrink: 0;
-}
-.theme-toggle:hover {
-  color: var(--cyan);
-  border-color: var(--cyan);
-  background: rgba(0,212,245,0.05);
-}
-
 /* ── SCROLL TO TOP ── */
 .scroll-top-btn {
   position: fixed;
@@ -562,7 +513,6 @@ footer {
 
 @media (max-width: 480px) {
   .scroll-top-btn { bottom: 20px; right: 16px; }
-  .theme-toggle   { width: 30px; height: 30px; }
 }
 
 
