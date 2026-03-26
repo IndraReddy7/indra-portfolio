@@ -478,20 +478,34 @@ footer {
 
 
 /* ── LIGHT THEME ── */
+/* "dim" theme — warm dark slate, not white */
 [data-theme="light"] {
-  --bg:     #f5f5f0;
-  --bg2:    #eeede8;
-  --border: #dddcd6;
-  --border2:#c8c7c0;
-  --white:  #0a0a0a;
-  --muted:  #888880;
-  --muted2: #555550;
-  --text:   #333330;
+  --bg:     #1a1a1f;
+  --bg2:    #22222a;
+  --border: #2e2e38;
+  --border2:#3a3a48;
+  --white:  #e8e6e0;
+  --muted:  #6b6b78;
+  --muted2: #9a98a8;
+  --text:   #c8c6d4;
 }
 [data-theme="light"] body { background: var(--bg); }
-[data-theme="light"] nav  { background: rgba(245,245,240,0.92); }
-[data-theme="light"] .glow-orb { opacity: 0.08; }
-[data-theme="light"] .hero-name .outline { -webkit-text-stroke: 2px var(--cyan); }
+[data-theme="light"] nav  { background: rgba(26,26,31,0.92); }
+[data-theme="light"] .skill-cell,
+[data-theme="light"] .proj-card,
+[data-theme="light"] .cert-cell,
+[data-theme="light"] .exp-row,
+[data-theme="light"] .about-row { background: var(--bg); }
+[data-theme="light"] .glow-orb.orange-1,
+[data-theme="light"] .glow-orb.orange-2,
+[data-theme="light"] .glow-orb.orange-3 {
+  background: radial-gradient(circle, #9b4dca 0%, #7b2fa8 40%, transparent 70%);
+  opacity: 0.12;
+}
+[data-theme="light"] .glow-orb.blue-1,
+[data-theme="light"] .glow-orb.blue-2 {
+  opacity: 0.14;
+}
 
 /* ── THEME TOGGLE BUTTON ── */
 .theme-toggle {
