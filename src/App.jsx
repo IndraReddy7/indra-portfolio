@@ -430,11 +430,11 @@ function Contact() {
           architecture, fraud detection, and intelligent data systems.
         </p>
         <div className="contact-links">
-          <a href="mailto:dareddyindra.reddy2@cognizant.com" className="clink">
-            ✉&nbsp; dareddyindra.reddy2@cognizant.com
+          <a href="mailto:indrasenareddybiher@gmail.com" className="clink">
+            ✉&nbsp; indrasenareddybiher@gmail.com
           </a>
           <a href="https://linkedin.com/in/Indra312004" target="_blank" rel="noreferrer" className="clink">
-            ↗&nbsp; linkedin.com/in/Indra312004
+            In&nbsp; Indra312004
           </a>
           <a href="tel:+917075182018" className="clink">
             ☎&nbsp; +91 70751 82018
