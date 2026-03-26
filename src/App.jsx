@@ -73,7 +73,6 @@ const CERTS = [
   { provider:'AWS',               name:'Fundamentals of Analytics on AWS – Part 1',    date:'March 21, 2026',           wip:false },
   { provider:'Microsoft · Udemy', name:"Microsoft Azure – Beginner's Guide + AZ-900",   date:'Feb 13, 2025 · 14.5 hrs',  wip:false },
   { provider:'Udemy',             name:'Data Modeling & Relational DB Design using ERwin',date:'Jan 1, 2025 · 3.5 hrs',   wip:false },
-  { provider:'Udemy',             name:'Spanish for Beginners – Complete Course Level 1', date:'Sept 16, 2025 · 4 hrs',   wip:false },
   { provider:'Amazon Web Services',name:'AWS Certified Data Engineer – Associate',        date:'Actively studying · Target 2026', wip:true },
   { provider:'Google Cloud',      name:'Associate Cloud Engineer / Data Practitioner',    date:'Actively studying · Target 2026', wip:true },
   { provider:'Databricks',          name:'Databricks Certified Associate Data Engineer',      date:'Actively studying · Target 2026', wip:true },
