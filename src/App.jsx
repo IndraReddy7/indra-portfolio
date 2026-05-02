@@ -5,7 +5,7 @@ const NAV_LINKS = ['about', 'skills', 'experience', 'projects', 'certifications'
 
 const SKILLS = [
   { label: 'AI / ML', items: ['Python', 'Machine Learning', 'Deep Learning', 'LLMs & GenAI', 'Multi-Agent Systems', 'Computer Vision'] },
-  { label: 'Cloud Platforms', items: ['AWS Fundamentals', 'Azure Fundamentals', 'GCP Fundamentals'] },
+  { label: 'Cloud Platforms', items: ['AWS Fundamentals', 'Azure Fundamentals'] },
   { label: 'Data Engineering', items: ['PySpark', 'SQL (Advanced)', 'ETL Pipeline Design'] },
   { label: 'Certified', items: ['AWS Certified Data Engineer – Associate'] },
 ]
