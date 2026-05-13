@@ -337,7 +337,7 @@ function Hero() {
       </h1>
       <p className="hero-sub hero-anim" ref={ref(1)}>
         <span className="hl">AI &amp; Data Engineer</span>
-        {' '}— Cognizant &nbsp;·&nbsp; AWS &nbsp;·&nbsp; Azure &nbsp;·&nbsp; GCP
+        {' '}— Cognizant &nbsp;·&nbsp; AWS &nbsp;·&nbsp; Azure &nbsp;
       </p>
       <p className="hero-bio hero-anim" ref={ref(2)}>
         Building intelligent systems at the intersection of AI and data engineering. Specializing
